@@ -1,0 +1,10 @@
+{
+    "permissions": {
+        "storage": {
+            "DynamoStores": [
+                "create",
+                "update"
+            ]
+        }
+    }
+}

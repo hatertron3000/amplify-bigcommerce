@@ -1,0 +1,14 @@
+{
+    "trigger": true,
+    "modules": [
+        "boilerplate-verify"
+    ],
+    "parentResource": "CognitoStores",
+    "functionName": "CognitoStoresVerifyAuthChallengeResponse",
+    "parentStack": "auth",
+    "triggerEnvs": "[]",
+    "triggerTemplate": "VerifyAuthChallengeResponse.json.ejs",
+    "roleName": "CognitoStoresVerifyAuthChallengeResponse",
+    "skipEdit": true,
+    "resourceName": "CognitoStoresVerifyAuthChallengeResponse"
+}

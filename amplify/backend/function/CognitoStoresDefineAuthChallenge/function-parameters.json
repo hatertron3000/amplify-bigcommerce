@@ -1,0 +1,14 @@
+{
+    "trigger": true,
+    "modules": [
+        "boilerplate-define-challenge"
+    ],
+    "parentResource": "CognitoStores",
+    "functionName": "CognitoStoresDefineAuthChallenge",
+    "parentStack": "auth",
+    "triggerEnvs": "[]",
+    "triggerTemplate": "DefineAuthChallenge.json.ejs",
+    "roleName": "CognitoStoresDefineAuthChallenge",
+    "skipEdit": true,
+    "resourceName": "CognitoStoresDefineAuthChallenge"
+}

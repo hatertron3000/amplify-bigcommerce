@@ -1,0 +1,38 @@
+{
+    "paths": [
+        {
+            "name": "/store-information",
+            "lambdaFunction": "bcApiLambda",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/GET"
+                ]
+            }
+        }
+    ],
+    "resourceName": "bcApi",
+    "apiName": "bcApi",
+    "functionArns": [
+        {
+            "lambdaFunction": "bcApiLambda"
+        }
+    ],
+    "privacy": {
+        "auth": 2,
+        "unauth": 0,
+        "authRoleName": "amplify-bigcommerce-dev-20190811094120-authRole",
+        "unAuthRoleName": "amplify-bigcommerce-dev-20190811094120-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "bcApiLambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "3cf7a50d"
+}

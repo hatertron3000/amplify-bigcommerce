@@ -1,0 +1,9 @@
+{
+    "SECRETNAME": "dev/bc-secret",
+    "SECRETKEY": "client_secret",
+    "SECRETARN": "arn:aws:secretsmanager:us-east-1:152493541084:secret:dev/bc-secret-P0mOTK",
+    "REDIRECTURL": "https://localhost:3000/oauth",
+    "BCCLIENTID": "1ls9831pcm0r7c35ger4s24p6hise21",
+    "modules": "",
+    "resourceName": "CognitoStoresPreSignup"
+}

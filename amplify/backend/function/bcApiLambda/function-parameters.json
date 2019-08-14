@@ -1,0 +1,19 @@
+{
+    "permissions": {
+        "storage": {
+            "DynamoStores": [
+                "read"
+            ]
+        },
+        "function": {
+            "bcApiClient": [
+                "read"
+            ]
+        },
+        "auth": {
+            "CognitoStores": [
+                "read"
+            ]
+        }
+    }
+}

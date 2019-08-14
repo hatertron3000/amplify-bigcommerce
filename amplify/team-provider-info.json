@@ -1,0 +1,27 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-bigcommerce-dev-20190811094120-authRole",
+            "UnauthRoleArn": "arn:aws:iam::152493541084:role/amplify-bigcommerce-dev-20190811094120-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::152493541084:role/amplify-bigcommerce-dev-20190811094120-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-bigcommerce-dev-20190811094120-deployment",
+            "UnauthRoleName": "amplify-bigcommerce-dev-20190811094120-unauthRole",
+            "StackName": "amplify-bigcommerce-dev-20190811094120",
+            "StackId": "arn:aws:cloudformation:us-east-1:152493541084:stack/amplify-bigcommerce-dev-20190811094120/16835870-bc46-11e9-ad90-12a886f5f55e"
+        },
+        "categories": {
+            "function": {
+                "CognitoStoresCreateAuthChallenge": {
+                    "CHALLENGEANSWER": "-a8s7uv[okaw3gpoi8awSogjj-w9s8uwdv[-0aw3i3hv4-8u"
+                },
+                "CognitoStoresDefineAuthChallenge": {},
+                "CognitoStoresPreSignup": {},
+                "CognitoStoresVerifyAuthChallengeResponse": {}
+            },
+            "auth": {
+                "CognitoStores": {}
+            }
+        }
+    }
+}
