@@ -3,7 +3,6 @@ import { API } from 'aws-amplify'
 import {
     Card,
     Button,
-    Jumbotron,
     Alert,
     Spinner,
     Container,
@@ -61,7 +60,7 @@ class StoreInformation extends Component {
                         <Card bg="light"
                             variant="light"
                             className="shadow"
-                            style={{ 'margin-top': '1rem' }}>
+                            style={{ 'marginTop': '1rem' }}>
                             <Card.Header>
                                 <Card.Title>
                                     Get Store Information

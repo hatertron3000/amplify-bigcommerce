@@ -67,7 +67,6 @@ async function getBcToken(hash) {
     }
 
     const results = await dynamoDbClient.query(params).promise()
-    console.log(JSON.stringify(results))
     if (results.Items.length === 0) return null
     // Token is base64 encoded in the DB. Depending on the
     // security requirements, consider implementing encryption
