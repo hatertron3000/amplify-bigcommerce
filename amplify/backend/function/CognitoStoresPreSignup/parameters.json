@@ -1,5 +1,5 @@
 {
-    "REDIRECTURL": "https://localhost:3000/oauth",
+    "REDIRECTURL": "https://d2fbhl63ylcrlz.cloudfront.net/oauth",
     "BCCLIENTID": "1ls9831pcm0r7c35ger4s24p6hise21",
     "modules": "",
     "resourceName": "CognitoStoresPreSignup"
