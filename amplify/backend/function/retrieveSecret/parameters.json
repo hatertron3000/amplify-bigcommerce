@@ -1,0 +1,5 @@
+{
+    "SECRETNAME": "dev/bc-secret",
+    "SECRETKEY": "client_secret",
+    "SECRETARN": "arn:aws:secretsmanager:us-east-1:152493541084:secret:dev/bc-secret-P0mOTK"
+}

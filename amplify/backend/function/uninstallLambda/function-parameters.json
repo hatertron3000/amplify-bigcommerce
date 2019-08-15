@@ -2,13 +2,17 @@
     "permissions": {
         "storage": {
             "DynamoStores": [
-                "create",
-                "update"
+                "delete"
             ]
         },
         "function": {
             "retrieveSecret": [
                 "read"
+            ]
+        },
+        "auth": {
+            "CognitoStores": [
+                "delete"
             ]
         }
     }

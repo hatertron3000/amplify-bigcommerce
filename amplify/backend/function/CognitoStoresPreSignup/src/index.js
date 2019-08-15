@@ -4,6 +4,7 @@ var environment = process.env.ENV
 var region = process.env.REGION
 var storageDynamoStoresName = process.env.STORAGE_DYNAMOSTORES_NAME
 var storageDynamoStoresArn = process.env.STORAGE_DYNAMOSTORES_ARN
+var functionRetrieveSecretName = process.env.FUNCTION_RETRIEVESECRET_NAME
 
 Amplify Params - DO NOT EDIT *//*
   this file will loop through all js modules which are uploaded to the lambda resource,
@@ -22,13 +23,22 @@ exports.handler = async (event) => {
         redirect_url: process.env.REDIRECT_URL
       }
 
-      const secretsManagerClient = new AWS.SecretsManager()
-      secretsManagerClient.getSecretValue({ SecretId: process.env.SECRETNAME }, (err, data) => {
-        if (err) console.log(err)
+      const lambdaClient = new AWS.Lambda()
+      const lambdaParams = {
+        FunctionName: process.env.FUNCTION_RETRIEVESECRET_NAME,
+        InvocationType: 'RequestResponse',
+        Payload: JSON.stringify({})
+      }
+
+      lambdaClient.invoke(lambdaParams, (err, data) => {
+        if (err) {
+          console.log(err)
+          reject(new Error('Error during installation'))
+        }
         else {
-          const secret = data.SecretString
-          const secretJson = JSON.parse(secret)
-          const client_secret = secretJson[process.env.SECRETKEY]
+          let client_secret = data.Payload
+          // Secret is returned wrapped in double quotes
+          client_secret = client_secret.substring(1, client_secret.length - 1)
 
           // send the POST request 
           const body = JSON.stringify({
@@ -105,8 +115,8 @@ exports.handler = async (event) => {
               }
               else {
                 console.error(`Error adding user: BC responded with ${res.statusCode}
-                    Response body:
-                    ${data} `)
+                  Response body:
+                  ${data} `)
                 reject(err)
               }
             })
@@ -120,6 +130,11 @@ exports.handler = async (event) => {
           req.write(body)
           req.end()
         }
+
+        const secretsManagerClient = new AWS.SecretsManager()
+        secretsManagerClient.getSecretValue({ SecretId: process.env.SECRETNAME }, (err, data) => {
+
+        })
       })
     }
     catch (err) {

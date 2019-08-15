@@ -2,18 +2,6 @@
 	"AWSTemplateFormatVersion": "2010-09-09",
 	"Description": "Lambda resource stack creation using Amplify CLI",
 	"Parameters": {
-		"SECRETNAME": {
-			"Type": "String",
-			"Default": ""
-		},
-		"SECRETKEY": {
-			"Type": "String",
-			"Default": ""
-		},
-		"SECRETARN": {
-			"Type": "String",
-			"Default": ""
-		},
 		"REDIRECTURL": {
 			"Type": "String",
 			"Default": ""
@@ -69,6 +57,10 @@
 		"storageDynamoStoresArn": {
 			"Type": "String",
 			"Default": "storageDynamoStoresArn"
+		},
+		"functionretrieveSecretName": {
+			"Type": "String",
+			"Default": "functionretrieveSecretName"
 		}
 	},
 	"Conditions": {
@@ -131,17 +123,14 @@
 						"STORAGE_DYNAMOSTORES_ARN": {
 							"Ref": "storageDynamoStoresArn"
 						},
-						"SECRETNAME": {
-							"Ref": "SECRETNAME"
-						},
-						"SECRETKEY": {
-							"Ref": "SECRETKEY"
-						},
 						"CLIENT_ID": {
 							"Ref": "BCCLIENTID"
 						},
 						"REDIRECT_URL": {
 							"Ref": "REDIRECTURL"
+						},
+						"FUNCTION_RETRIEVESECRET_NAME": {
+							"Ref": "functionretrieveSecretName"
 						}
 					}
 				},
@@ -155,7 +144,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-bigcommerce-dev-20190811094120-deployment",
-					"S3Key": "amplify-builds/CognitoStoresPreSignup-464a2b6854315159382b-build.zip"
+					"S3Key": "amplify-builds/CognitoStoresPreSignup-42725234516335374e45-build.zip"
 				}
 			}
 		},
@@ -215,13 +204,6 @@
 					"Statement": [
 						{
 							"Effect": "Allow",
-							"Action": "secretsmanager:GetSecretValue",
-							"Resource": {
-								"Ref": "SECRETARN"
-							}
-						},
-						{
-							"Effect": "Allow",
 							"Action": [
 								"logs:CreateLogGroup",
 								"logs:CreateLogStream",
@@ -275,6 +257,35 @@
 							"Resource": [
 								{
 									"Ref": "storageDynamoStoresArn"
+								}
+							]
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"lambda:Get*",
+								"lambda:List*",
+								"lambda:Invoke*"
+							],
+							"Resource": [
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:lambda:",
+											{
+												"Ref": "AWS::Region"
+											},
+											":",
+											{
+												"Ref": "AWS::AccountId"
+											},
+											":function:",
+											{
+												"Ref": "functionretrieveSecretName"
+											}
+										]
+									]
 								}
 							]
 						}

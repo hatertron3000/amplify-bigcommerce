@@ -9,7 +9,16 @@
         "CognitoStoresCreateAuthChallenge": {
             "service": "Lambda",
             "providerPlugin": "awscloudformation",
-            "build": true
+            "build": true,
+            "dependsOn": [
+                {
+                    "category": "function",
+                    "resourceName": "retrieveSecret",
+                    "attributes": [
+                        "Name"
+                    ]
+                }
+            ]
         },
         "CognitoStoresDefineAuthChallenge": {
             "service": "Lambda",
@@ -27,6 +36,13 @@
                     "attributes": [
                         "Name",
                         "Arn"
+                    ]
+                },
+                {
+                    "category": "function",
+                    "resourceName": "retrieveSecret",
+                    "attributes": [
+                        "Name"
                     ]
                 }
             ]
@@ -66,6 +82,40 @@
                     "resourceName": "CognitoStores",
                     "attributes": [
                         "UserPoolId"
+                    ]
+                }
+            ]
+        },
+        "retrieveSecret": {
+            "service": "Lambda",
+            "providerPlugin": "awscloudformation",
+            "build": true
+        },
+        "uninstallLambda": {
+            "service": "Lambda",
+            "providerPlugin": "awscloudformation",
+            "build": true,
+            "dependsOn": [
+                {
+                    "category": "storage",
+                    "resourceName": "DynamoStores",
+                    "attributes": [
+                        "Name",
+                        "Arn"
+                    ]
+                },
+                {
+                    "category": "auth",
+                    "resourceName": "CognitoStores",
+                    "attributes": [
+                        "UserPoolId"
+                    ]
+                },
+                {
+                    "category": "function",
+                    "resourceName": "retrieveSecret",
+                    "attributes": [
+                        "Name"
                     ]
                 }
             ]
@@ -123,6 +173,20 @@
                 {
                     "category": "function",
                     "resourceName": "bcApiLambda",
+                    "attributes": [
+                        "Name",
+                        "Arn"
+                    ]
+                }
+            ]
+        },
+        "uninstallApi": {
+            "service": "API Gateway",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [
+                {
+                    "category": "function",
+                    "resourceName": "uninstallLambda",
                     "attributes": [
                         "Name",
                         "Arn"

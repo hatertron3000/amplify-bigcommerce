@@ -1,14 +1,9 @@
 {
-    "trigger": true,
-    "modules": [
-        "boilerplate-create-challenge"
-    ],
-    "parentResource": "CognitoStores",
-    "functionName": "CognitoStoresCreateAuthChallenge",
-    "parentStack": "auth",
-    "triggerEnvs": "[]",
-    "triggerTemplate": "CreateAuthChallenge.json.ejs",
-    "roleName": "CognitoStoresCreateAuthChallenge",
-    "skipEdit": true,
-    "resourceName": "CognitoStoresCreateAuthChallenge"
+    "permissions": {
+        "function": {
+            "retrieveSecret": [
+                "read"
+            ]
+        }
+    }
 }

@@ -1,0 +1,34 @@
+{
+    "paths": [
+        {
+            "name": "/uninstall",
+            "lambdaFunction": "uninstallLambda",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "uninstallApi",
+    "apiName": "uninstallApi",
+    "functionArns": [
+        {
+            "lambdaFunction": "uninstallLambda"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-bigcommerce-dev-20190811094120-authRole",
+        "unAuthRoleName": "amplify-bigcommerce-dev-20190811094120-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "uninstallLambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
