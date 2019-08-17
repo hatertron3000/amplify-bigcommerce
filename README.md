@@ -25,9 +25,7 @@ If you intend to use this application as a starting point for a production serve
   
 
 - Always use [AWS IAM best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html).
-
 - Adding encryption in-transit with [DynamoDB Encryption Client](https://docs.aws.amazon.com/dynamodb-encryption-client/latest/devguide/what-is-ddb-encrypt.html), or an alternate API key storage service, for the API tokens this app stores in DynamoDB.
-
 - Adding Logout links, and faster token expiration (default is 1 day).
 
   
@@ -224,6 +222,12 @@ Follow the prompts to create a new environment, or use an existing one. Amplify 
   
 
 ## Deploy Backend to Cloud
+
+> *A note about security*
+> To ensure the React client is only able to authenticate with the custom auth flow, be sure to enable Only allow Custom Authentication (CUSTOM_AUTH_FLOW_ONLY) for the app in the App Clients section of the Cognito User Pool console. See the Security Considerations section of the AWS blog post [Customizing Amazon Cognito User Pool Authentication Flows](https://aws.amazon.com/blogs/mobile/customizing-your-user-pool-authentication-flow/).
+
+> Nevertheless, the [signUp()](https://aws-amplify.github.io/amplify-js/api/classes/authclass.html#signup) method requires both a username and password. To ensure the password is not something easily guessable, the React client randomly generates a password between 16 and 256 characters including both alphanumeric and special characters.
+
 
 ### Local Testing
 
