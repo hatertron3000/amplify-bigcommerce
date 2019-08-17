@@ -1,6 +1,6 @@
 {
-    "REDIRECTURL": "https://localhost:3000/oauth",
-    "BCCLIENTID": "1ls9831pcm0r7c35ger4s24p6hise21",
+    "REDIRECTURL": "<YOUR-APP'S-REDIRECT-CALLBACK-URL>",
+    "BCCLIENTID": "<YOUR-BC-API-CLIENT>",
     "modules": "",
     "resourceName": "CognitoStoresPreSignup"
 }
