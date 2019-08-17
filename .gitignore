@@ -32,3 +32,8 @@ dist/
 node_modules/
 aws-exports.js
 awsconfiguration.json
+
+#local lambda parameters
+amplify/backend/function/bcApiClient/parameters.json.local
+amplify/backend/function/CognitoStoresPreSignup/parameters.json.local
+amplify/backend/function/retrieveSecret/parameters.json.local
