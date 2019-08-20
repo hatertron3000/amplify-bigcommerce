@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { API } from 'aws-amplify'
 import {
-    Card,
+    Panel,
+    Flex,
+    ProgressCircle,
+    H2,
     Button,
-    Alert,
-    Spinner,
-    Container,
-    Row,
-    Col
-} from 'react-bootstrap'
+    Text,
+} from '@bigcommerce/big-design'
+import OutputTextArea from '../common/OutputTextArea'
+import Alert from '../common/Alert'
 
 class StoreInformation extends Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class StoreInformation extends Component {
         this.setState({ loading: false })
     }
 
-    handleClick(event) {
+    handleClick() {
         this.setState({ disabled: true })
         API.get(process.env.REACT_APP_BCAPI, process.env.REACT_APP_STOREINFORMATIONPATH)
             .then(res => {
@@ -49,49 +50,31 @@ class StoreInformation extends Component {
     render() {
         return this.state.loading
             ? <div className="centered">
-                <Spinner animation="border" role="status">
-                    <span className="sr-only">Loading...</span>
-                </Spinner>
+                <ProgressCircle size={'large'} />
             </div>
-            : <Container>
-                <Row noGutters={true}>
-                    <Col></Col>
-                    <Col xs={10}>
-                        <Card bg="light"
-                            variant="light"
-                            className="shadow"
-                            style={{ 'marginTop': '1rem' }}>
-                            <Card.Header>
-                                <Card.Title>
-                                    Get Store Information
-                </Card.Title>
-                            </Card.Header>
-                            <Card.Body>
-                                <Card.Text>
-                                    Click the button to get store information:
-                    </Card.Text>
-                                <Button variant="dark" onClick={this.handleClick}>Get Information</Button>
-                            </Card.Body>
-                            <Card.Footer>
-                                {this.state.error
-                                    ? <Alert variant="warning" dismissable>
-                                        Error retrieving store information
-                                            </Alert>
-                                    : null}
-                                {this.state.information
-                                    ? <pre style={{ 'max-height': '100%' }}>
-                                        <code>
-                                            {JSON.stringify(this.state.information, null, 2)}
-                                        </code>
-                                    </pre>
-                                    : null}
-                            </Card.Footer>
-                        </Card>
-                    </Col>
-                    <Col></Col>
-                </Row>
-            </Container>
+            : <Panel marginTop="small">
+                <Flex justifyContent="flex-start" flexDirection="row">
+                    <Flex.Item>
+                        <H2>{this.props.lang.heading}</H2>
+                    </Flex.Item>
+                </Flex>
+                <Text>{this.props.lang.cta}</Text>
+                <Button actionType="normal"
+                    isLoading={this.state.disabled}
+                    onClick={this.handleClick}
+                    marginBottom="medium">{this.props.lang.button}
+                </Button>
+                {this.state.error
+                    ? <Alert variant="danger" text={this.props.lang.error} />
+                    : null}
+                {this.state.information
+                    ? <OutputTextArea content={JSON.stringify(this.state.information, null, 2)}
+                        code={true} />
+                    : null}
+            </Panel>
     }
 }
+
+
 
 export default StoreInformation
