@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Spinner } from 'react-bootstrap'
+import { ProgressCircle, Box } from '@bigcommerce/big-design'
 import { Redirect } from 'react-router-dom'
+import Alert from './common/Alert'
 import { Auth } from 'aws-amplify'
 
 class Load extends Component {
@@ -69,22 +70,20 @@ class Load extends Component {
             {this.state.loading && !this.state.error
                 ? <div className="fullscreen">
                     <div className="centered">
-                        <Spinner animation="border" role="status">
-                            <span className="sr-only">Loading...</span>
-                        </Spinner>
+                        <ProgressCircle size="large" />
                     </div>
                 </div>
                 : null}
             {this.state.error
-                ? <div className="alert alert-warning" role="alert">
-                    Error loading the app
-                </div>
+                ? <Box padding="large">
+                    <Alert variant="warning"
+                        text={this.props.lang.error} />
+                </Box>
                 : this.state.load_success
                     ? <Redirect to="/dashboard/store-information" />
                     : null}
         </div>
     }
-
 }
 
 export default Load

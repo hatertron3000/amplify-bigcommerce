@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 import { Auth } from 'aws-amplify'
-import { Form, Container, Alert, Button } from 'react-bootstrap'
+import {
+    H1,
+    Panel,
+    Box,
+    Button,
+    Form,
+    Checkbox,
+    Text
+} from '@bigcommerce/big-design'
+import Alert from './common/Alert'
 
 class Install extends Component {
     constructor(props) {
@@ -13,6 +22,7 @@ class Install extends Component {
             error: false,
             installation_complete: false,
             disabled: true,
+            loading: false,
         }
         this.onClickTOS = this.onClickTOS.bind(this)
         this.onClickSignup = this.onClickSignup.bind(this)
@@ -39,86 +49,102 @@ class Install extends Component {
     }
 
     async onClickSignup(e) {
+        e.preventDefault()
         this.setState({
-            disabled: true
+            loading: true,
         })
-        const result = await Auth.signUp({
-            username: this.state.context.split('/')[1],
-            password: this.stringGenerator(),
-            attributes: {
-                name: this.state.context.split('/')[1]
-            },
-            validationData: [
-                {
-                    Name: 'code',
-                    Value: this.state.code,
-                },
-                {
-                    Name: 'scope',
-                    Value: this.state.scope,
-                },
-                {
-                    Name: 'context',
-                    Value: this.state.context,
-                },
-            ]
-        })
-            .catch(err => console.log(err))
+        try {
+            const username = this.state.context.split('/')[1],
+                password = this.stringGenerator()
 
-        if (result)
-            this.setState({
-                installation_complete: true,
+            const result = await Auth.signUp({
+                username,
+                password,
+                attributes: {
+                    name: username
+                },
+                validationData: [
+                    {
+                        Name: 'code',
+                        Value: this.state.code,
+                    },
+                    {
+                        Name: 'scope',
+                        Value: this.state.scope,
+                    },
+                    {
+                        Name: 'context',
+                        Value: this.state.context,
+                    },
+                ]
             })
-        else {
+                .catch(err => console.log(err))
+
+            if (result)
+                this.setState({
+                    installation_complete: true,
+                    loading: false,
+                    disabled: true
+                })
+            else {
+                this.setState({
+                    error: true,
+                    loading: false,
+                })
+            }
+        } catch (err) {
             this.setState({
-                error: 'Error during installation'
+                error: true,
+                disabled: false,
+                loading: false
+            })
+        }
+
+
+    }
+
+    onClickTOS(e) {
+        if (!this.state.loading && !this.state.installation_complete) {
+            this.setState({
+                tosChecked: e.target.checked,
+                disabled: !e.target.checked
             })
         }
     }
 
-    onClickTOS(e) {
-        this.setState({
-            tosChecked: e.target.checked,
-            disabled: !e.target.checked
-        })
-    }
-
     render() {
         return (
-            <Container>
-                <h1>
-                    Thank you for installing the app.
-                </h1>
-                {this.state.error
-                    ? <Alert variant="warning">
-                        Error during installation
-                    </Alert>
-                    : null}
-                {this.state.installation_complete
-                    ? <Alert variant="success">
-                        <Alert.Heading>Installation Complete</Alert.Heading>
-                        Please close and reopen the app to begin using it.
-                    </Alert>
-                    : null}
-                <Form>
-                    Check this box to agree to the terms of service. Consider adding a form here to gather additional information.
-                    <Form.Group controlId="tosInpt">
-                        <Form.Check
-                            type="checkbox"
-                            id="tos">
-                            <Form.Check.Input type="checkbox" onClick={this.onClickTOS} />
-                            <Form.Check.Label>You agree to the <a href="#">terms of service</a> of the app.</Form.Check.Label>
-                        </Form.Check>
-
-                    </Form.Group>
-                    <Button
-                        disabled={this.state.disabled}
-                        onClick={this.onClickSignup}
-                        variant="primary">
-                        Sign Up
+            <Box padding="large">
+                <H1>{this.props.lang.heading}</H1>
+                <Panel>
+                    <Text>{this.props.lang.tos_intro}</Text>
+                    <Form>
+                        <Form.Group>
+                            <Checkbox checked={this.state.tosChecked}
+                                label={`You agree to the terms of service of the app.`}
+                                onChange={this.onClickTOS} />
+                            <a href="#"><small>{this.props.lang.view_tos}</small></a>
+                        </Form.Group>
+                        <Button
+                            disabled={this.state.disabled}
+                            isLoading={this.state.loading}
+                            variant="primary"
+                            onClick={this.onClickSignup}
+                            actionType="normal"
+                            marginBottom="medium">
+                            Sign Up
                     </Button>
-                </Form>
-            </Container >
+                    </Form>
+                    {this.state.error
+                        ? <Alert variant="danger" text={this.props.lang.error} />
+                        : null}
+                    {this.state.installation_complete
+                        ?
+                        <Alert variant="success"
+                            text={this.props.lang.success} />
+                        : null}
+                </Panel>
+            </Box>
         )
     }
 }
