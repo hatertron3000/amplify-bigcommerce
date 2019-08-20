@@ -1,6 +1,6 @@
 # Summary
 
-This is an example BigCommerce app build with AWS Amplify. Deploy and configure this app so that you can launch it from the BigCommerce control panel and retrieve data from the BigCommerce Store Information API.
+This is an example BigCommerce app build with AWS Amplify. Deploy and configure this app so that you can launch it from the BigCommerce control panel and retrieve data from the BigCommerce Store Information API. It uses the [BigDesign](https://developer.bigcommerce.com/big-design/) component library, so it looks much like the native BigCommerce interface.
 
   
 
