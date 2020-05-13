@@ -48,12 +48,12 @@ This example will walk you through registering a [personal app](https://develope
 
 - **App Name:** The name of your application.
 - **Auth Callback URL:** The React app hosts the auth callback URL at /oauth
--- Example: https://example.com/install
-- **Load Callback URL:** The React app hosts the load callback URL at /load
 -- Example: https://example.com/oauth
+- **Load Callback URL:** The React app hosts the load callback URL at /load
+-- Example: https://example.com/load
 
 
-You may use a URL such as https://localhost:3000/install to test against the local development server. You may update them later to instead use a permanent CloudFront URL, or a custom domain. You can use tools like [Amplify Console](https://console.aws.amazon.com/amplify) or [Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/)routing-to-api-gateway.html to apply a domain to your app.
+You may use a URL such as https://localhost:3000/install to test against the local development server. You may update them later to instead use a permanent CloudFront URL, or a custom domain. You can use tools like [Amplify Console](https://console.aws.amazon.com/amplify) or [Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-api-gateway.html) to apply a domain to your app.
 
 1. Navigate to [https://devtools.bigcommerce.com](https://devtools.bigcommerce.com/) and log into your BigCommerce account
 2. If necessary, log in with your store owner account.
