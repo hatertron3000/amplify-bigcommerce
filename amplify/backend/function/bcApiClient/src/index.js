@@ -166,7 +166,7 @@ const BigCommerce = class {
 const methods = ['GET_STORE', 'GET_HOOK', 'GET_HOOKS', 'PUT_HOOK', 'POST_HOOK', 'DELETE_HOOK']
 
 const validate = ({ store_hash, access_token, version, method, params, body }) => {
-  const hashRe = new RegExp('([a-z\d\S]){3,15}')
+  const hashRe = new RegExp('([a-z0-9\d\S]){3,15}')
   if (typeof store_hash !== 'string' || !hashRe.test(store_hash))
     throw new Error('Store hash is not valid')
   else if (typeof access_token !== 'string' || !access_token)
