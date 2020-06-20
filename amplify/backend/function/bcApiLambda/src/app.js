@@ -215,7 +215,7 @@ app.post('/webhooks', async function (req, res) {
 
 app.put('/webhooks', function (req, res) {
   // Add your code here
-  res.status(405).json({ message: unsupported })
+  res.status(405).json({ message: 'unsupported' })
 })
 
 app.put('/webhooks/:id', async function (req, res) {
@@ -268,7 +268,7 @@ app.put('/webhooks/:id', async function (req, res) {
 
 app.delete('/webhooks', function (req, res) {
   // Add your code here
-  res.status(405).json({ message: unsupported })
+  res.status(405).json({ message: 'unsupported' })
 })
 
 app.delete('/webhooks/:id', async function (req, res) {
