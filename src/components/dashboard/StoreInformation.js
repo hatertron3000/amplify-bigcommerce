@@ -3,6 +3,7 @@ import { API } from 'aws-amplify'
 import {
     Panel,
     Flex,
+    FlexItem,
     ProgressCircle,
     H2,
     Button,
@@ -54,9 +55,9 @@ class StoreInformation extends Component {
             </div>
             : <Panel marginTop="small">
                 <Flex justifyContent="flex-start" flexDirection="row">
-                    <Flex.Item>
+                    <FlexItem>
                         <H2>{this.props.lang.heading}</H2>
-                    </Flex.Item>
+                    </FlexItem>
                 </Flex>
                 <Text>{this.props.lang.cta}</Text>
                 <Button actionType="normal"

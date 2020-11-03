@@ -6,6 +6,7 @@ import {
     Box,
     Button,
     Form,
+    FormGroup,
     Checkbox,
     Text
 } from '@bigcommerce/big-design'
@@ -119,12 +120,12 @@ class Install extends Component {
                 <Panel>
                     <Text>{this.props.lang.tos_intro}</Text>
                     <Form>
-                        <Form.Group>
+                        <FormGroup>
                             <Checkbox checked={this.state.tosChecked}
                                 label={`You agree to the terms of service of the app.`}
                                 onChange={this.onClickTOS} />
                             <a href="#"><small>{this.props.lang.view_tos}</small></a>
-                        </Form.Group>
+                        </FormGroup>
                         <Button
                             disabled={this.state.disabled}
                             isLoading={this.state.loading}
