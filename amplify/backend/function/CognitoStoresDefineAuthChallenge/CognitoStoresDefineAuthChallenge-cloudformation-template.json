@@ -91,10 +91,10 @@
 						"Arn"
 					]
 				},
-				"Runtime": "nodejs8.10",
+				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-bigcommerce-dev-20190811094120-deployment",
+					"S3Bucket": "amplify-amplify-bigcommerce-tshooting-124547-deployment",
 					"S3Key": "amplify-builds/CognitoStoresDefineAuthChallenge-5549772b53386a617662-build.zip"
 				}
 			}

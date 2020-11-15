@@ -2,6 +2,7 @@ import React from 'react'
 import {
     Box,
     Flex,
+    FlexItem,
     Text
 } from '@bigcommerce/big-design'
 import {
@@ -25,12 +26,12 @@ const Alert = (props) => {
     return <Box backgroundColor={`${props.variant}10`}
         padding="medium">
         <Flex>
-            <Flex.Item>
+            <FlexItem>
                 <Icon variant={props.variant} />
-            </Flex.Item>
-            <Flex.Item>
+            </FlexItem>
+            <FlexItem>
                 <Text marginLeft="small">{props.text}</Text>
-            </Flex.Item>
+            </FlexItem>
         </Flex>
     </Box>
 }

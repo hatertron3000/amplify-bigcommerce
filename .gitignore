@@ -37,3 +37,7 @@ awsconfiguration.json
 amplify/backend/function/bcApiClient/parameters.json.local
 amplify/backend/function/CognitoStoresPreSignup/parameters.json.local
 amplify/backend/function/retrieveSecret/parameters.json.local
+
+#amplify demo (REMOVE FOR YOUR PRIVATE REPO)
+team-provider-info.json
+amplify.state
